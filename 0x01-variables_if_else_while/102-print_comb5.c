@@ -1,47 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * main -  prints all possible combinations of two two-digit numbers
+ * main - prints possible combinations of two two-digit numbers
  *
  * Return: 0
  */
 int main(void)
 {
-	int c = 0;
-	int f_d;
-	int l_d;
+	int c, i, k, j;
 
-	int c2;
-	int f_d2;
-	int l_d2;
-
-	while (c <= 98)
+	for (c = 48; c <= 57; c++)
 	{
-		f_d = (c / 10 + '0');
-		l_d = (c % 10 + '0');
-		c2 = 0;
-
-		while (c2 <= 99)
+		for (i = 48; i <= 57; i++)
 		{
-			f_d2 = (c2 / 10 + '0');
-			l_d2 = (c2 % 10 + '0');
-
-			if (c < c2)
+			for (k = 48; k <= 57; k++)
 			{
-				putchar(f_d);
-				putchar(l_d);
-				putchar(' ');
-				putchar(f_d2);
-
-				if (c != 98)
+				for (j = 48; j <= 57; j++)
 				{
-					putchar(',');
-					putchar(' ');
+					if (((k + j) > (c + i) &&  k >= c) || c < k)
+					{
+						putchar(c);
+						putchar(i);
+						putchar(' ');
+						putchar(k);
+						putchar(j);
+
+						if (c + i + k + j == 227 && c == 57)
+						{
+						break;
+						}
+						else
+						{
+						putchar(',');
+						putchar(' ');
+						}
+					}
 				}
 			}
-			c2++;
 		}
-		c++;
 	}
 	putchar('\n');
 	return (0);
