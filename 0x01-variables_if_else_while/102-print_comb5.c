@@ -5,6 +5,7 @@
  *
  * Return: 0
  */
+
 int main(void)
 {
 	int c, i, k, j;
@@ -29,11 +30,11 @@ int main(void)
 						{
 						break;
 						}
-						else
 						{
+						else
+						}
 						putchar(',');
 						putchar(' ');
-						}
 					}
 				}
 			}
