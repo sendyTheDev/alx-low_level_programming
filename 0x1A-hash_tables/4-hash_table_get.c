@@ -1,28 +1,26 @@
 #include "hash_tables.h"
+
 /**
- * hash_table_get - retrieves a value associated with a key
- * @key: key of the value to retrieve
- * @ht: hash table to look into
+ * hash_table_get - given key
+ * @key: key
+ * @ht: hash table
  *
- * Return: the value associated with the element
+ * Return: value; or NULL if not found
  */
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
-	unsigned long int index;
-	hash_node_t *node = NULL;
+	unsigned long int mall;
+	hash_node_t *tmp;
 
-	if (!ht || !key || !strcmp(key, ""))
+	if (!ht || !key)
 		return (NULL);
+	mall = key_index((const unsigned char *)key, ht->size);
 
-	index = key_index((const unsigned char *)key, ht->size);
-	node = (ht->array)[index];
-
-	while (node)
-	{
-		if (!strcmp(node->key, (char *)key))
-			return (node->value);
-		node = node->next;
-	}
-
-	return (NULL);
+	tmp = (ht->array)[mall];
+	while (tmp != NULL && strcmp(tmp->key, key) != 0)
+		tmp = tmp->next;
+	if (!tmp)
+		return (NULL);
+	else
+		return (tmp->value);
 }
